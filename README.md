@@ -1,4 +1,4 @@
-# Data Structures — Project 2
+# Data Structures Project 2
 
 C programs of binary heaps, Kruskal's MST, BFS, and Bellman-Ford
 shortest paths. Each question lives in its own folder with a `main.c` and the
@@ -13,10 +13,7 @@ small set of headers it needs.
 ├── q3/  Kruskal's MST for a fiber-optic backbone
 ├── q4/  BFS to find one-hop peers of a compromised workstation
 ├── q5/  Bellman-Ford shortest paths in a banking network
-├── docs/
-│   ├── assgmt_prompt.txt
-│   ├── assgmt_rubrics.txt
-│   └── images/   graph_q3.png, graph_q4.png, graph_q5.png
+├── images/   graph_q3.png, graph_q4.png, graph_q5.png
 └── README.md
 ```
 
@@ -37,7 +34,7 @@ in non-interactively, e.g. `echo D | ./q4/main`.
 
 ---
 
-## Q1 — Cloud Job Scheduler (Max-Heap)
+## Q1: Cloud Job Scheduler (Max-Heap)
 
 Input priorities `P = {42, 17, 93, 28, 65, 81, 54, 60, 99, 73, 88}`. Each
 priority is paired with a sequential job ID (`A`, `B`, …, `K`). The new
@@ -52,7 +49,7 @@ inserting priority 100, and after removing priority 100.
   `siftUp`/`siftDown`, `buildMaxHeap`, `heapInsert`, `findIndexByPriority`,
   `heapDeleteAt`, and the array/tree printers.
 
-## Q2 — Airport Screening (Max-Heap of Passengers)
+## Q2: Airport Screening (Max-Heap of Passengers)
 
 Six passengers (Alice, Brian, Chen, Fatima, Noah, Sofia) with risk scores
 are inserted, heapified, then drained through `extractMax` to produce the
@@ -64,9 +61,10 @@ later removed.
   heap into a snapshot so the original heap survives for the insert/delete
   steps.
 
-## Q3 — Fiber-Optic MST (Kruskal's Algorithm)
+## Q3: Fiber-Optic MST (Kruskal's Algorithm)
 
-Graph image: `docs/images/graph_q3.png`.
+Graph image:
+<img src="images/graph_q3.png"/>
 
 Hubs: A, B, C, D, E, F, G. Edges (cost in millions):
 
@@ -81,8 +79,8 @@ Hubs: A, B, C, D, E, F, G. Edges (cost in millions):
 | E–F  | 10   |
 | F–G  | 22   |
 
-> The image also shows lines from A–D and D–F whose weight labels were not
-> clearly legible. The MST below is unchanged if their weights are ≥ 17
+> The image also shows lines from A–D and D–F whose weight labels are not there.
+> The MST below is unchanged if their weights are >= 17
 > (since the spanning tree picks the next-best edges anyway).
 
 The program prints the adjacency matrix, the sorted edge list, every
@@ -91,13 +89,14 @@ Kruskal decision (accept/skip-cycle), the final MST, and the total cost.
 MST edges chosen: B–D (5), A–B (6), E–F (10), B–C (11), D–E (22), F–G (22).
 **Total: 76 million USD.**
 
-* `graph.h` — `HubGraph` with the adjacency matrix and edge collection.
-* `union_find.h` — disjoint-set with path compression and union-by-rank, used
+* `graph.h`: `HubGraph` with the adjacency matrix and edge collection.
+* `union_find.h`: disjoint-set with path compression and union-by-rank, used
   to reject cycle-forming edges.
 
-## Q4 — BFS for a Breached Workstation
+## Q4: BFS for a Breached Workstation
 
-Graph image: `docs/images/graph_q4.png` (same topology as Q3 here).
+Graph image:
+<img src="images/graph_q4.png"/>
 
 The program prints the list of workstations, prompts the user to enter the
 suspected compromised one, runs a BFS one level deep, lists each direct
@@ -118,12 +117,13 @@ Directly connected workstations (one-hop neighbors):
 Highest-risk peer: E (data transfer time = 22 minutes)
 ```
 
-* `graph.h` — `CommGraph` with adjacency matrix + label lookup.
-* `queue.h` — plain integer queue backing the BFS frontier.
+* `graph.h`: `CommGraph` with adjacency matrix + label lookup.
+* `queue.h`: plain integer queue backing the BFS frontier.
 
-## Q5 — Banking Risk Propagation (Bellman-Ford)
+## Q5: Banking Risk Propagation (Bellman-Ford)
 
-Graph image: `docs/images/graph_q5.png`.
+Graph image:
+<img src="images/graph_q5.png"/>
 
 Branches: A, B, C, D, E, F, G, H, I, J. Edges (undirected):
 
@@ -164,7 +164,7 @@ No negative cycle is detected (the supplied graph has only positive
 weights). The detection step is still run and reported, since the algorithm
 must be able to flag one if it appears.
 
-* `graph.h` — `BankGraph` with a flat edge list, plus a helper that adds an
+* `graph.h`: `BankGraph` with a flat edge list, plus a helper that adds an
   undirected edge as two directed ones.
-* `bellman_ford.h` — relaxation loop, negative-cycle check, predecessor
+* `bellman_ford.h`: relaxation loop, negative-cycle check, predecessor
   array, and `printPath` for reconstructing the route from source to target.
